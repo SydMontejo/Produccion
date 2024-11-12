@@ -1,0 +1,72 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QFRYTYGL3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3QFRYTYGL3');
+</script>
+
+<header>
+  <section class="navigation">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="/loginadm" class="image-link">
+          <img src="/assets/logo-cunori.png" class="image">
+          <img src="/assets/logo_ingenieria.png" class="image">
+          Pruebas Especifícas de Ingeniería v1.0
+        </a>
+      </div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="">Estudiante</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</header>
+
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <h1 class="h1-bold-center">Administración: Inicio de Sesión</h1>
+    </div>
+    <form (ngSubmit)="formSubmit()">
+      <div class="usuarioInput">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input [(ngModel)]="loginData.username" name="usuario" matInput placeholder="Ingrese su Usuario"
+            required />
+          <mat-error>
+            Usuario es Requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input [(ngModel)]="loginData.password" name="password" placeholder="Ingrese su Contraseña" matInput [type]=" hide ? 'password' : 'text'" required
+            type="password" />
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide; $event.stopPropagation()" 
+            [attr.aria-label]="'Hide Password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>
+                {{hide ? 'visibility_off' : 'visibility'}}
+              </mat-icon>
+            </button>            
+          <mat-error>
+            Contraseña es Requerida
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br>
+      <button type="submit" mat-raised-button color="primary">Iniciar sesión</button>
+    </form>
+  </mat-card-content>
+  <br><br>
+  <!-- <mat-card-footer>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer> -->
+</mat-card>

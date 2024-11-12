@@ -1,0 +1,113 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QFRYTYGL3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3QFRYTYGL3');
+</script>
+
+<header>
+    <section class="navigation">
+      <div class="nav-container">
+        <div class="brand">
+          <a class="image-link">
+            <img src="/assets/logo-cunori.png" class="image" alt="Logo Cunori">
+            <img src="/assets/logo_ingenieria.png" class="image" alt="Logo Ingeniería">
+            Pruebas Específicas de Ingeniería v1.0
+          </a>
+        </div>
+        <nav>
+          <ul class="nav-list">
+            <li><a href="/estudiantes" class="nav-link">
+              <mat-icon>keyboard_backspace</mat-icon> Atrás
+            </a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </header>
+
+<div class="container">
+    <div class="card-body">
+        <h1 class="h1-bold-left">{{titulo}}</h1>
+    <form>
+        <div class="form-group row">
+          <label for="carnet" class="col-form-label col-sm-1"><strong>NOV/Carnet:</strong></label>
+          <div class="col-sm-5">
+          <input type="text" class="form-control" name="carnet" [(ngModel)]="estudiante.nov">
+          </div>
+        </div> 
+        <br>
+        <div class="form-group row">
+            <label for="nombres" class="col-form-label col-sm-1"><strong>Nombres:</strong></label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" name="nombres" [(ngModel)]="estudiante.nombre">
+            </div>
+        </div> 
+        <br>
+        <div class="form-group row">
+          <label for="carrera" class="col-form-label col-sm-1"><strong>Carrera:</strong></label>
+          <div class="col-sm-5">
+            <select class="form-select" aria-label="Select" type="text" name="carrera" [(ngModel)]="estudiante.car">
+              <option [value]="21">Ingeniería Civil</option>
+              <option [value]="22">Ingeniería en Ciencias y Sistemas</option>
+              <option [value]="33">Ingeniería Industrial</option>
+            </select>
+          </div>
+        </div>        
+        <br>
+        <div class="form-group row">
+          <label for="fecha" class="col-form-label col-sm-1"><strong>Fecha:</strong></label>
+          <div class="col-sm-5">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" type="text" class="form-control" name="fecha"
+                   [(ngModel)]="prueba.fecha" style="display: inline; width: 400px;">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker> 
+          </div>
+        </div>        
+        <br>
+        <div class="form-group row">
+          <label for="prueba" class="col-form-label col-sm-1"><strong>Prueba:</strong></label>
+          <div class="col-sm-5">
+            <select class="form-select" aria-label="Select" type="text" name="prueba" [(ngModel)]="prueba.nombrePrueba">
+              <option value="Matemática">Matematica</option>
+              <option value="Computación">Computacion</option>
+            </select>
+          </div>
+        </div>        
+        <br>
+        <div class="form-group row">
+          <label for="resultado" class="col-form-label col-sm-1"><strong>Resultado:</strong></label>
+          <div class="col-sm-5">
+            <select class="form-select" aria-label="Select" type="text" name="resultado" [(ngModel)]="prueba.resultado">
+              <option value="SATISFACTORIO">SATISFACTORIO</option>
+              <option value="INSATISFACTORIO">INSATISFACTORIO</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label for="cui" class="col-form-label col-sm-1"><strong>CUI:</strong></label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" name="cui" [(ngModel)]="estudiante.cui">
+            </div>
+        </div> 
+        <br>
+        <div class="form-group row">
+            <label for="correo" class="col-form-label col-sm-1"><strong>Correo:</strong></label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" name="correo" [(ngModel)]="estudiante.correo">
+            </div>
+        </div> 
+        <input type="hidden" name="estudianteId" [(ngModel)]="estudiante.id">
+        <br>
+        <div class="button-group">    
+          <button class="btn btn-success align-icon" role="button" (click)='update()'>
+            <mat-icon class="icon">check_circle</mat-icon> Actualizar
+          </button>                  
+        </div>   
+      </form>
+    </div>
+</div>

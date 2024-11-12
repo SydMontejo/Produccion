@@ -1,0 +1,93 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QFRYTYGL3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3QFRYTYGL3');
+</script>
+
+<header>
+  <section class="navigation">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="/" class="image-link">
+          <div class="images">
+            <img src="/assets/logo-cunori.png" class="image" alt="Logo Cunori">
+            <img src="/assets/logo_ingenieria.png" class="image" alt="Logo Ingeniería">
+          </div>
+          <br>
+          <div class="text">
+            Pruebas Específicas de Ingeniería v1.0
+          </div>
+        </a>
+      </div>      
+    </div>
+  </section>
+</header>
+
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <h1 class="h1-bold-center">Consulta de Pruebas Específicas de Ingeniería</h1>
+    </div>
+    <form (ngSubmit)="formSubmit()">
+      <div class="nombreInput">
+        <mat-form-field 
+          class="full-width" 
+            appearance="outline">
+          <mat-label>NOV/Carnet</mat-label>
+          <input 
+            [(ngModel)]="loginData.username" 
+            name="nombre" 
+            matInput placeholder="Ingrese su NOV/Carnet"
+            required 
+          />
+          <mat-error>
+            NOV es Requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Carrera</mat-label>
+          <mat-select 
+            [(ngModel)]="loginData.password" 
+              name="password" required
+              matInput placeholder="Seleccione su Carrera">
+            <mat-option 
+              *ngFor="let carrera of carreras" 
+              [value]="carrera.value">
+              {{carrera.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            Carrera es Requerida
+          </mat-error>
+        </mat-form-field>
+      </div> 
+      <div class="container justify-content-center">
+        <div class="container justify-content-center">
+          <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+          <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
+            <div *ngIf="recaptcha.errors?.['required']">This field is required.</div>
+          </div>
+        </div>
+      </div>            
+      <br>
+      <button 
+        type="submit" 
+        mat-raised-button 
+        color="primary">
+        Ingresar
+      </button>
+      <br>
+    </form>
+  </mat-card-content>
+  <br><br>
+  <mat-card-footer>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
+

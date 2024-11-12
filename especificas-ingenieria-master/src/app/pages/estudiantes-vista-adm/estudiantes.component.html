@@ -1,0 +1,124 @@
+
+
+<header>
+  <section class="navigation">
+    <div class="nav-container">
+      <div class="brand">
+        <a class="image-link">
+          <img src="/assets/logo-cunori.png" class="image" alt="Logo Cunori">
+          <img src="/assets/logo_ingenieria.png" class="image" alt="Logo Ingeniería">
+          Pruebas Específicas de Ingeniería v1.0
+        </a>
+      </div>
+      <nav>
+        <ul class="nav-list">
+          <li>
+            <a (click)="logout()" class="nav-link">
+              <mat-icon>exit_to_app</mat-icon> Salir
+            </a>
+          </li>
+        </ul>        
+      </nav>
+    </div>
+  </section>
+</header>
+
+<div class="container">
+  <h1 class="h1-bold-center">{{ titulo }}</h1>
+
+  <div class="search-and-report">
+    <div class="button-group">
+      <button class="btn btn-info mb-4 align-icon" type="button" [routerLink]="['/agregar']">
+        <mat-icon>add</mat-icon>Añadir
+      </button>
+      <button class="btn btn-warning mb-4 align-icon" type="button" [routerLink]="['/resumenes']">
+        <mat-icon> notes</mat-icon>Resúmenes
+      </button>
+    </div>
+    <form class="search-form" (ngSubmit)="buscar()">
+      <input type="text" class="form-control search-input mb-4" [(ngModel)]="terminoBusqueda" name="busqueda"
+        placeholder="Buscar...">
+      <button type="submit" class="btn btn-primary mb-4 align-icon">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button type="button" class="btn btn-danger mb-4 align-icon" (click)="borrarBusqueda()">
+        <mat-icon>backspace</mat-icon>
+      </button>
+    </form>
+  </div>
+  
+  <table class="table table-bordered" *ngIf="estudiantes && estudiantes.length > 0">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col" class="table-header-center">No.</th>
+            <th scope="col" class="table-header-center">NOV/Carnet</th>
+            <th scope="col" class="table-header-center">Nombre</th>
+            <th scope="col" class="table-header-center">Código Carrera</th>
+            <th scope="col" class="table-header-center">Computación</th>
+            <th scope="col" class="table-header-center">Matemáticas</th>
+            <!-- <th scope="col" class="table-header-center">Opciones</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let estudiante of estudiantes">
+            <th scope="row">{{ estudiante.nov }}</th>
+            <td class="table-header-center">{{ estudiante.nov }}</td>
+            <td class="table-header-center">{{ estudiante.nombre }}</td>
+            <td class="table-header-center">{{ estudiante.car }}</td>
+            <td class="table-header-center">{{ estudiante.computacion }}</td>
+            <td class="table-header-center">{{ estudiante.matematica }}</td>
+            <!-- <td class="button-container">
+                <div class="button-group">
+                    <button type="button" name="button" class="btn btn-primary"
+                        [routerLink]="['/estudiantes/form', estudiante.id, estudiante.nombre]">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button type="button" name="button" class="btn btn-danger" (click)="eliminar(prueba, estudiante)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </td> -->
+        </tr>
+    </tbody>
+</table>
+  
+  <!-- <table class="table table-bordered" *ngIf="estudiantes && estudiantes.length > 0">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col" class="table-header-center">No.</th>
+        <th scope="col" class="table-header-center">NOV/Carnet</th>
+        <th scope="col" class="table-header-center">Nombre</th>
+        <th scope="col" class="table-header-center">Codigo Carrera</th>
+        <th scope="col" class="table-header-center">Fecha</th>
+        <th scope="col" class="table-header-center">Prueba</th>
+        <th scope="col" class="table-header-center">Resultado</th>
+        <th scope="col" class="table-header-center">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let estudiante of estudiantes">
+        <tr *ngFor="let prueba of estudiante.pruebas">
+          <th scope="row">{{prueba.id}}</th>
+          <td class="table-header-center"> {{estudiante.nov }}</td>
+          <td class="table-header-center">{{estudiante.nombre}}</td>
+          <td class="table-header-center">{{estudiante.car}}</td>
+          <td class="table-header-center" type="date">{{prueba.fecha | date: 'dd/MM/yyyy'}}</td>
+          <td class="table-header-center">{{prueba.nombrePrueba}}</td>
+          <td class="table-header-center">{{prueba.resultado }}</td>
+          <td class="button-container">
+            <div class="button-group">
+              <button type="button" name="button" class="btn btn-primary"
+                [routerLink]="['/estudiantes/form', prueba.id, estudiante.nombre]">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button type="button" name="button" class="btn btn-danger" (click)="eliminar(prueba, estudiante)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table> -->
+  
+</div>

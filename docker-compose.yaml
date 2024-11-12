@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  esp_frontend_angular:
+    container_name: esp_frontend_angular
+    image: pee-angular_app:1.0.0
+    build: ./frontend
+    ports:
+      - 4205:4200
+    networks:
+      - sitios-wordpressF
+    depends_on:
+      - esp_backend_spring
+    environment:
+      VIRTUAL_HOST: especificas.ingsistemascunori.org
+      LETSENCRYPT_HOST: especificas.ingsistemascunori.org
+      LETSENCRYPT_EMAIL: especificas_ingenieria@gmail.com
+    restart: always
+
+  esp_backend_spring:
+    container_name: esp_backend_spring
+    image: pee-java_app:1.0.0
+    build: ./backend
+    ports:
+      - 8085:8080
+    networks:
+      - sitios-wordpressF
+    environment:
+      - DATABASE_URL=jdbc:mysql://esp_db_mysql:3306/apirest
+      - DATABASE_USERNAME=mysql
+      - DATABASE_PASSWORD=mysql
+      - VIRTUAL_HOST=api-especificas.ingsistemascunori.org
+      - LETSENCRYPT_HOST=api-especificas.ingsistemascunori.org
+      - LETSENCRYPT_EMAIL=api-especificas@gmail.com
+    depends_on:
+      - esp_db_mysql
+    restart: always
+
+  esp_db_mysql:
+    container_name: esp_db_mysql
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    networks:
+      - sitios-wordpressF
+    volumes:
+      - esp_db_mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: apirest
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    restart: always
+
+networks:
+  sitios-wordpressF:
+    external: true
+
+volumes:
+  esp_db_mysql:

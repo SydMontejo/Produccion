@@ -1,0 +1,80 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QFRYTYGL3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-3QFRYTYGL3');
+</script>
+
+<header>
+  <section class="navigation">
+    <div class="nav-container">
+      <div class="brand">
+        <a class="image-link">
+          <img src="/assets/logo-cunori.png" class="image" alt="Logo Cunori">
+          <img src="/assets/logo_ingenieria.png" class="image" alt="Logo Ingeniería">
+          Pruebas Específicas de Ingeniería v1.0
+        </a>
+      </div>
+      <nav class="right-nav">
+        <ul class="nav-list">
+          <li>
+            <a (click)="logout()" class="nav-link">
+              <mat-icon>exit_to_app</mat-icon> Salir
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</header>
+
+<div class="nav-container">
+  <ng-container *ngIf="estudiante">
+    <h1 class="h1-center"><strong>{{ nombreEstudiante }}</strong> {{estudiante.nombre}} ({{estudiante.nov}})</h1>
+    <h1 class="h1-center"><strong>{{ nombreCarrera }}</strong> {{ getNombreCarrera(estudiante.car) }}</h1>
+    <h3 class="h3-center"><strong style="color: red;">Importante:</strong> Únicamente se entrega constancia al obtener resultado SATISFACTORIO en ambas pruebas.</h3>    
+    <h3 class="h3-center">Si su resultado es SATISFACTORIO en ambas pruebas, puede descargar su constancia en el siguiente enlace: <a class="h3-a" href="http://especificas.cunori.edu.gt" target="_blank">http://especificas.cunori.edu.gt</a></h3>
+    <h3 class="h3-center">Si obtuvo resultado INSATISFACTORIO en alguna prueba, únicamente deberá evaluarse de está en la siguiente oportunidad, para lo cual deberá inscribirse nuevamente.</h3>
+  </ng-container>
+</div>
+<br><br>
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="table-info">
+      <tr>
+        <th scope="col" class="table-header-center">Fecha</th>
+        <th scope="col" class="table-header-center">Prueba</th>
+        <th scope="col" class="table-header-center">Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prueba of pruebas">
+        <td class="table-header-center" type="date">{{prueba.fecha | date: 'dd/MM/yyyy'}}</td>
+        <td class="table-header-center">{{prueba.nombrePrueba}}</td>
+        <td class="table-header-center">{{prueba.resultado}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br><br>
+<div class="container" style="visibility: hidden;">
+  <table class="table table-bordered">
+    <thead class="table-info">
+      <tr>
+        <th scope="col" class="table-header-center">Fecha</th>
+        <th scope="col" class="table-header-center">Prueba</th>
+        <th scope="col" class="table-header-center">Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prueba of pruebas">
+        <td class="table-header-center" type="date">{{prueba.fecha | date: 'dd/MM/yyyy'}}</td>
+        <td class="table-header-center">{{prueba.nombrePrueba}}</td>
+        <td class="table-header-center">{{prueba.resultado}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
